@@ -760,7 +760,6 @@ function renderGallery(data) {
         <div class="gallery-name">${name}</div>
         <div class="gallery-meta">${d.charity}${d.city ? ' · ' + d.city : ''}${d.country ? ', ' + d.country : ''}</div>
         <div class="gallery-tags">
-          ${d.skill ? `<span class="tag ${skillClass(d.skill)}">${d.skill}</span>` : ''}
           ${d.tool  ? d.tool.split(/[,;\/]/).slice(0,2).map(t=>`<span class="tag">${t.trim()}</span>`).join('') : ''}
           ${/yes/i.test(d.present) ? `<span class="tag present">✦ Presenter</span>` : ''}
         </div>
