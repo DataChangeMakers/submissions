@@ -9,600 +9,66 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --sand:#f7f3ed;
-  --sand2:#ede8e0;
-  --sand3:#d9d2c5;
+  --cream:#faf7f2;
+  --cream2:#f2ede4;
+  --cream3:#e5ddd0;
+  --brown:#2c2318;
+  --brown2:#4a3d2e;
+  --brown3:#7a6a57;
+  --tan:#c4a882;
+  --tan2:#ddc9ae;
+  --teal:#1a8f69;
+  --teal2:#e8f5ef;
+  --rust:#c4522a;
+  --rust2:#fbeee8;
+  --gold:#b8860b;
+  --gold2:#fdf3d8;
   --ink:#1a1714;
-  --ink2:#3d3830;
-  --muted:#7a7268;
-  --faint:#b0a99e;
-  --teal:#1D9E75;
-  --teal-l:#E1F5EE;
-  --teal-d:#0F6E56;
-  --amber:#BA7517;
-  --amber-l:#FAEEDA;
-  --amber-d:#633806;
-  --coral:#D85A30;
-  --coral-l:#FAECE7;
-  --coral-d:#4A1B0C;
-  --r:14px;
-  --rl:22px;
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.6}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--brown);line-height:1.6;font-size:15px}
 
-/* NAV */
-nav{background:var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo img{height:32px;filter:brightness(0) invert(1)}
-.nav-title{color:#fff;font-size:14px;font-weight:500;letter-spacing:0.01em}
-.nav-right{display:flex;align-items:center;gap:8px}
-.nav-pill{font-size:11px;padding:4px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);background:none;font-family:inherit;cursor:pointer;transition:all 0.2s}
-.nav-pill:hover{border-color:rgba(255,255,255,0.5);color:#fff}
-.nav-pill.active{background:#fff;color:var(--ink);border-color:#fff;font-weight:600}
-.live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;margin-right:5px}
-
-/* HERO */
-.hero{background:var(--ink2);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(29,158,117,0.15) 0%,transparent 70%)}
-.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;position:relative}
-.hero-h{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);color:#fff;line-height:1.15;margin-bottom:1rem;position:relative}
-.hero-h em{font-style:italic;color:#d4b896}
-.hero-sub{font-size:15px;color:rgba(255,255,255,0.55);max-width:500px;margin:0 auto 2.5rem;position:relative}
-.hero-stats{display:flex;justify-content:center;gap:0;position:relative;flex-wrap:wrap}
-.hero-stat{padding:1.25rem 2rem;border-right:1px solid rgba(255,255,255,0.1);text-align:center}
-.hero-stat:last-child{border-right:none}
-.hero-stat-n{font-family:'DM Serif Display',serif;font-size:2.6rem;color:#fff;line-height:1;display:block}
-.hero-stat-l{font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;display:block}
-
-/* SECTION LAYOUT */
-.section{max-width:960px;margin:0 auto;padding:3rem 2rem}
-.section-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.5rem}
-.section-h{font-family:'DM Serif Display',serif;font-size:1.9rem;color:var(--ink);line-height:1.2;margin-bottom:0.5rem}
-.section-sub{font-size:14px;color:var(--muted);margin-bottom:2rem}
-
-/* DIVIDER */
-.divider{border:none;border-top:1px solid var(--sand3);margin:0}
-
-/* IMPACT BAND */
-.impact-band{background:var(--teal);padding:3rem 2rem}
-.impact-inner{max-width:960px;margin:0 auto}
-.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.15);border-radius:var(--r);overflow:hidden}
-.impact-item{background:rgba(0,0,0,0.15);padding:1.5rem;text-align:center}
-.impact-n{font-family:'DM Serif Display',serif;font-size:2.8rem;color:#fff;line-height:1;display:block}
-.impact-l{font-size:11px;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:0.08em;margin-top:6px;display:block}
-.impact-icon{font-size:20px;margin-bottom:8px;display:block;opacity:0.7}
-
-/* CHARTS SECTION */
-.charts-pair{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
-.chart-card{background:#fff;border-radius:var(--rl);padding:1.5rem;border:1px solid var(--sand3)}
-.chart-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px}
-.chart-title{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:1rem}
-
-/* GALLERY */
-.gallery-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
-.gc-input{font-family:inherit;font-size:13px;padding:7px 12px;border-radius:8px;border:1px solid var(--sand3);background:#fff;color:var(--ink);outline:none;flex:1;min-width:160px}
-.gc-input:focus{border-color:var(--teal)}
-.gc-select{font-family:inherit;font-size:12px;padding:7px 10px;border-radius:8px;border:1px solid var(--sand3);background:#fff;color:var(--ink);cursor:pointer;outline:none}
-.vol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.vol-card{background:#fff;border-radius:var(--rl);overflow:hidden;border:1px solid var(--sand3);cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
-.vol-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-.vol-img{width:100%;height:160px;object-fit:cover;background:var(--sand)}
-.vol-img-ph{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--sand3)}
-.vol-body{padding:1rem}
-.vol-name{font-size:14px;font-weight:600;color:var(--ink)}
-.vol-meta{font-size:11px;color:var(--muted);margin-top:2px}
-.vol-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
-.vol-tag{font-size:10px;padding:2px 8px;border-radius:99px;background:var(--sand);color:var(--muted);border:1px solid var(--sand3)}
-.vol-tag.teal{background:var(--teal-l);color:var(--teal-d);border-color:rgba(29,158,117,0.2)}
-.vol-tag.amber{background:var(--amber-l);color:var(--amber-d);border-color:rgba(186,117,23,0.2)}
-.vol-link{display:block;font-size:11px;font-weight:600;color:var(--teal-d);text-decoration:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--sand2)}
-.vol-link:hover{color:var(--teal)}
-.load-more{display:block;width:100%;margin-top:1.5rem;padding:12px;background:none;border:1.5px solid var(--sand3);border-radius:var(--r);font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.2s}
-.load-more:hover{border-color:var(--teal);color:var(--teal-d)}
-
-/* FEEDBACK SECTION */
-.feedback-bg{background:var(--sand2);padding:3rem 2rem}
-.feedback-inner{max-width:960px;margin:0 auto}
-.quotes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
-.quote-card{background:#fff;border-radius:var(--rl);padding:1.5rem;border:1px solid var(--sand3);position:relative}
-.quote-card::before{content:'\201C';font-family:'DM Serif Display',serif;font-size:4rem;color:var(--sand3);position:absolute;top:8px;left:16px;line-height:1}
-.quote-text{font-size:14px;color:var(--ink2);line-height:1.7;padding-top:1.5rem;font-style:italic}
-.quote-author{margin-top:1rem;display:flex;align-items:center;gap:10px}
-.quote-avatar{width:36px;height:36px;border-radius:50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--teal-d);flex-shrink:0}
-.quote-name{font-size:12px;font-weight:600;color:var(--ink)}
-.quote-org{font-size:11px;color:var(--muted)}
-.quote-star{color:var(--amber);font-size:12px;margin-top:2px}
-.rating-summary{background:var(--teal);border-radius:var(--rl);padding:1.5rem;color:#fff;display:flex;align-items:center;gap:1.5rem;margin-top:1.25rem}
-.rating-big{font-family:'DM Serif Display',serif;font-size:3.5rem;line-height:1}
-.rating-sub{font-size:12px;opacity:0.7;margin-top:4px}
-.rating-bar-wrap{flex:1}
-.r-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
-.r-label{font-size:11px;opacity:0.7;width:32px;text-align:right;flex-shrink:0}
-.r-bar-bg{flex:1;height:6px;background:rgba(255,255,255,0.2);border-radius:3px;overflow:hidden}
-.r-bar{height:100%;background:#fff;border-radius:3px;transition:width 0.8s ease}
-.r-count{font-size:11px;opacity:0.6;width:20px}
-
-/* MODAL */
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(20,17,14,0.7);z-index:500;align-items:center;justify-content:center;padding:1rem}
-.modal-bg.open{display:flex}
-.modal-box{background:#fff;border-radius:var(--rl);max-width:580px;width:100%;max-height:90vh;overflow-y:auto;padding:2rem;position:relative}
-.modal-close{position:absolute;top:1rem;right:1rem;background:var(--sand);border:none;border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px;color:var(--muted);font-family:inherit}
-.modal-img{width:100%;border-radius:var(--r);margin-bottom:1.25rem;max-height:280px;object-fit:cover}
-.modal-h{font-size:20px;font-weight:600;color:var(--ink)}
-.modal-org{font-size:13px;color:var(--muted);margin-top:2px}
-.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1.25rem}
-.mf label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--faint);display:block;margin-bottom:2px}
-.mf span{font-size:13px;color:var(--ink)}
-
-/* LOADING / ERROR */
-.loading-wrap{text-align:center;padding:5rem 2rem;color:var(--muted)}
-.spin{width:28px;height:28px;border:2px solid var(--sand3);border-top-color:var(--teal);border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 1rem}
-@keyframes spin{to{transform:rotate(360deg)}}
-.error-box{background:var(--coral-l);border-radius:var(--r);padding:12px 16px;color:var(--coral-d);font-size:13px;margin:1rem 2rem}
-
-/* FOOTER */
-footer{background:var(--ink);padding:2rem;text-align:center}
-footer p{font-size:12px;color:rgba(255,255,255,0.3)}
-
-/* PAGINATION */
-.pag{display:flex;justify-content:center;align-items:center;gap:5px;margin-top:1.5rem}
-.pag-btn{font-family:inherit;font-size:12px;font-weight:600;padding:6px 11px;border-radius:8px;cursor:pointer;border:1px solid var(--sand3);background:#fff;color:var(--muted);transition:all 0.15s}
-.pag-btn:hover{border-color:var(--teal);color:var(--teal-d)}
-.pag-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
-.pag-btn:disabled{opacity:0.3;cursor:default}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .hero-stat{padding:1rem 1.2rem}
-  .hero-stat-n{font-size:2rem}
-  .impact-grid{grid-template-columns:1fr 1fr}
-  .charts-pair{grid-template-columns:1fr}
-  .vol-grid{grid-template-columns:1fr 1fr}
-  .quotes-grid{grid-template-columns:1fr}
-  .rating-summary{flex-direction:column;align-items:flex-start}
+/* ── MASTHEAD ── */
+.masthead{
+  border-bottom:3px solid var(--brown);
+  padding:0 3rem;
+  display:flex;align-items:stretch;justify-content:space-between;
+  background:var(--cream);
+  position:sticky;top:0;z-index:200;
 }
-@media(max-width:480px){
-  .hero{padding:3rem 1rem 2rem}
-  .hero-stats{flex-direction:column;align-items:center}
-  .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);width:100%;padding:0.75rem 1rem}
-  .hero-stat:last-child{border-bottom:none}
-  .vol-grid{grid-template-columns:1fr}
-  .section{padding:2rem 1rem}
-  .modal-grid{grid-template-columns:1fr}
+.mast-left{display:flex;align-items:center;gap:16px;padding:12px 0}
+.mast-logo{height:38px}
+.mast-divider{width:1px;background:var(--cream3);height:30px}
+.mast-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--brown);letter-spacing:-0.01em}
+.mast-right{display:flex;align-items:center;gap:0;border-left:1px solid var(--cream3)}
+.mast-meta{padding:0 1.25rem;border-right:1px solid var(--cream3);text-align:center;display:flex;flex-direction:column;justify-content:center}
+.mast-meta-n{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--brown);line-height:1}
+.mast-meta-l{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown3);margin-top:2px}
+.mast-btn{padding:0 1.25rem;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--brown3);background:none;border:none;cursor:pointer;transition:color 0.2s;height:100%}
+.mast-btn:hover{color:var(--teal)}
+
+/* ── COVER ── */
+.cover{
+  min-height:92vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:2px solid var(--brown);
 }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <img src="https://static.wixstatic.com/media/2608ce_4ffd1217cfad49bb950c7e852ea7dbc0~mv2.png/v1/crop/x_0,y_84,w_1280,h_857/fill/w_133,h_89,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/FullLogo_Transparent.png" alt="DCM">
-    <span class="nav-title">Volunteer Submissions</span>
-  </div>
-  <div class="nav-right">
-    <span style="font-size:12px;color:rgba(255,255,255,0.4);"><span class="live-dot"></span><span id="nav-status">Loading…</span></span>
-    <button class="nav-pill" onclick="loadData()">↺ Refresh</button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow">Data ChangeMakers · Season Report</div>
-  <h1 class="hero-h">Real people,<br><em>real impact</em></h1>
-  <p class="hero-sub">A look at our volunteer community — the hours, the tools, the stories.</p>
-  <div class="hero-stats" id="hero-stats">
-    <div class="hero-stat"><span class="hero-stat-n" id="hs-submissions">—</span><span class="hero-stat-l">Submissions</span></div>
-    <div class="hero-stat"><span class="hero-stat-n" id="hs-hours">—</span><span class="hero-stat-l">Hours given</span></div>
-    <div class="hero-stat"><span class="hero-stat-n" id="hs-orgs">—</span><span class="hero-stat-l">Organisations</span></div>
-    <div class="hero-stat"><span class="hero-stat-n" id="hs-countries">—</span><span class="hero-stat-l">Countries</span></div>
-  </div>
-  <div id="hero-error"></div>
-</div>
-
-<!-- IMPACT BAND -->
-<div class="impact-band">
-  <div class="impact-inner">
-    <div style="margin-bottom:1.5rem;">
-      <p style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px">Community snapshot</p>
-      <h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:#fff;font-weight:400">By the numbers</h2>
-    </div>
-    <div class="impact-grid" id="impact-grid">
-      <div class="impact-item"><span class="impact-n" id="imp-tools">—</span><span class="impact-l">Unique tools</span></div>
-      <div class="impact-item"><span class="impact-n" id="imp-first">—</span><span class="impact-l">First timers</span></div>
-      <div class="impact-item"><span class="impact-n" id="imp-presenters">—</span><span class="impact-l">Presenters</span></div>
-      <div class="impact-item"><span class="impact-n" id="imp-avg">—</span><span class="impact-l">Avg hours / vol</span></div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- CHARTS -->
-<div class="section">
-  <div class="section-label">Insight</div>
-  <h2 class="section-h">What the data tells us</h2>
-  <p class="section-sub">Skills, tools, and where our volunteers are from.</p>
-  <div class="charts-pair">
-    <div class="chart-card">
-      <div class="chart-label">Skill levels</div>
-      <div class="chart-title">Who's showing up</div>
-      <div style="position:relative;height:200px"><canvas id="skillChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-label">Top tools</div>
-      <div class="chart-title">How they work</div>
-      <div style="position:relative;height:200px"><canvas id="toolChart"></canvas></div>
-    </div>
-  </div>
-  <div class="charts-pair">
-    <div class="chart-card">
-      <div class="chart-label">Countries</div>
-      <div class="chart-title">Where they're from</div>
-      <div style="position:relative;height:200px"><canvas id="countryChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-label">Projects</div>
-      <div class="chart-title">Submissions per project</div>
-      <div style="position:relative;height:200px"><canvas id="trendChart"></canvas></div>
-    </div>
-  </div>
-</div>
-
-<hr class="divider">
-
-<!-- GALLERY -->
-<div class="section">
-  <div class="section-label">Community</div>
-  <h2 class="section-h">Meet the volunteers</h2>
-  <p class="section-sub">The people behind the data.</p>
-
-  <div class="gallery-controls">
-    <input class="gc-input" type="text" id="search" placeholder="Search name, tool, city…">
-    <select class="gc-select" id="filter-charity"><option value="">All projects</option></select>
-    <select class="gc-select" id="filter-skill"><option value="">All skills</option></select>
-    <select class="gc-select" id="filter-country"><option value="">All countries</option></select>
-    <select class="gc-select" id="filter-firsttime"><option value="">All volunteers</option><option value="yes">First timers</option><option value="no">Returning</option></select>
-  </div>
-
-  <p class="result-info" id="result-count" style="font-size:12px;color:var(--muted);margin-bottom:1rem"></p>
-  <div id="loading-area" class="loading-wrap"><div class="spin"></div>Loading stories…</div>
-  <div id="vol-grid" class="vol-grid" style="display:none"></div>
-  <div class="pag" id="pagination" style="display:none"></div>
-</div>
-
-<hr class="divider">
-
-<!-- FEEDBACK -->
-<div class="feedback-bg">
-  <div class="feedback-inner">
-    <div class="section-label">Voices</div>
-    <h2 class="section-h">What volunteers said</h2>
-    <p class="section-sub">Feedback straight from the community.</p>
-    <div id="feedback-loading" class="loading-wrap" style="padding:2rem"><div class="spin"></div></div>
-    <div id="feedback-content" style="display:none">
-      <div class="rating-summary" id="rating-summary"></div>
-      <div class="quotes-grid" id="quotes-grid"></div>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <p>Data ChangeMakers · Volunteer Submissions Dashboard · Updated <span id="footer-time">—</span></p>
-</footer>
-
-<!-- MODAL -->
-<div class="modal-bg" id="modal" onclick="maybeClose(event)">
-  <div class="modal-box" id="modal-box">
-    <button class="modal-close" onclick="closeModal()">Close ✕</button>
-    <div id="modal-content"></div>
-  </div>
-</div>
-
-<script>
-const API_KEY='AIzaSyAtOXeiYk4A9KwEnj4LY3VB_ypJ8O69DlQ';
-const SUB_ID='14jOgDE-a7-I7Rns9zERGTcA2ounblIdli2b5v-sWYSg';
-const FB_ID='1-fRkcHIc3-Md5hb8xaz2t4LarAGgLyR_jJuebgwVjCk';
-const SUB_TAB='All Submissions';
-const FB_TAB='Feedback';
-
-let allData=[];
-let fbData=[];
-let charts={};
-let currentPage=1;
-const PAGE=12;
-
-function gsheet(id,tab){
-  return fetch(`https://sheets.googleapis.com/v4/spreadsheets/${id}/values/${encodeURIComponent(tab)}?key=${API_KEY}`)
-    .then(r=>r.ok?r.json():r.json().then(e=>{throw new Error(e.error?.message||'Error')}))
+.cover-left{
+  background:var(--brown);
+  padding:4rem 3.5rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
 }
-
-function v(row,i){return row[i]!==undefined?String(row[i]).trim():''}
-function n(row,i){return parseFloat(v(row,i).replace(/[$,]/g,''))||0}
-
-async function loadData(){
-  document.getElementById('nav-status').textContent='Loading…';
-  try{
-    const [sub,fb]=await Promise.all([
-      gsheet(SUB_ID,SUB_TAB),
-      gsheet(FB_ID,FB_TAB)
-    ]);
-
-    const rows=(sub.values||[]).slice(1).filter(r=>r.some(c=>String(c).trim()));
-    allData=rows.map(r=>({
-      date:v(r,2),charity:v(r,3),firstName:v(r,4),lastName:v(r,5),
-      type:v(r,7),skill:v(r,8),country:v(r,9),city:v(r,10),
-      hours:n(r,11),firstTime:v(r,12),tool:v(r,13),link:v(r,14),
-      screenshot:v(r,15),topic:v(r,17),present:v(r,18)
-    })).filter(d=>d.firstName||d.charity);
-
-    const fbRows=(fb.values||[]).slice(1).filter(r=>r.some(c=>String(c).trim()));
-    fbData=fbRows.map(r=>({
-      name:v(r,1)||v(r,2)||'',
-      rating:parseFloat(v(r,3))||0,
-      text:v(r,4)||v(r,5)||'',
-      org:v(r,6)||''
-    })).filter(d=>d.text||d.rating);
-
-    document.getElementById('nav-status').textContent='Live · '+new Date().toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
-    document.getElementById('loading-area').style.display='none';
-    document.getElementById('vol-grid').style.display='grid';
-    document.getElementById('pagination').style.display='flex';
-
-    populateFilters();
-    renderHero();
-    renderImpact();
-    renderCharts();
-    renderGallery();
-    renderFeedback();
-    document.getElementById('footer-time').textContent=new Date().toLocaleDateString('en-AU',{day:'numeric',month:'long',year:'numeric'});
-
-  }catch(err){
-    document.getElementById('nav-status').textContent='Error — retry';
-    document.getElementById('loading-area').innerHTML=`<p style="color:#993c1d;font-size:13px;">Could not load: ${err.message}</p>`;
-  }
+.cover-left::after{
+  content:'';position:absolute;bottom:-60px;right:-60px;
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(196,168,130,0.08);
 }
-
-function renderHero(){
-  const total=allData.length;
-  const hours=allData.reduce((s,d)=>s+d.hours,0);
-  const orgs=new Set(allData.map(d=>d.charity).filter(Boolean)).size;
-  const countries=new Set(allData.map(d=>d.country).filter(Boolean)).size;
-  document.getElementById('hs-submissions').textContent=total.toLocaleString();
-  document.getElementById('hs-hours').textContent=hours>=1000?(hours/1000).toFixed(1)+'k':hours.toLocaleString();
-  document.getElementById('hs-orgs').textContent=orgs;
-  document.getElementById('hs-countries').textContent=countries;
-}
-
-function renderImpact(){
-  const tools=new Set(allData.flatMap(d=>d.tool.split(/[,;\/]/).map(t=>t.trim())).filter(Boolean)).size;
-  const first=allData.filter(d=>/yes|y|true/i.test(d.firstTime)).length;
-  const pct=allData.length?Math.round(first/allData.length*100):0;
-  const presenters=allData.filter(d=>/yes/i.test(d.present)).length;
-  const uniqueVols=new Set(allData.map(d=>[d.firstName,d.lastName].filter(Boolean).join(' '))).size;
-  const avgHours=uniqueVols?Math.round(allData.reduce((s,d)=>s+d.hours,0)/uniqueVols):0;
-  document.getElementById('imp-tools').textContent=tools;
-  document.getElementById('imp-first').textContent=pct+'%';
-  document.getElementById('imp-presenters').textContent=presenters;
-  document.getElementById('imp-avg').textContent=avgHours+'h';
-}
-
-function countBy(arr){return arr.filter(Boolean).reduce((a,v)=>{a[v]=(a[v]||0)+1;return a},{});}
-function topN(obj,n){return Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,n);}
-function dc(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
-
-const PALETTE={sand:'#c8bfb0',teal:'#1D9E75',amber:'#BA7517',coral:'#D85A30',muted:'#888780'};
-
-function renderCharts(){
-  const data=allData;
-
-  dc('skill');
-  const sm=countBy(data.map(d=>d.skill));
-  const so=['Beginner','Intermediate','Advanced','Expert'];
-  const sl=so.filter(s=>sm[s]);
-  charts.skill=new Chart(document.getElementById('skillChart'),{
-    type:'doughnut',
-    data:{labels:sl,datasets:[{data:sl.map(s=>sm[s]||0),backgroundColor:['#E1F5EE','#9FE1CB','#1D9E75','#0F6E56'],borderWidth:0,hoverOffset:4}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},color:'#7a7268',boxWidth:10,padding:10}}}}
-  });
-
-  dc('tool');
-  const at=data.flatMap(d=>d.tool.split(/[,;\/]/).map(t=>t.trim())).filter(Boolean);
-  const tt=topN(countBy(at),6);
-  charts.tool=new Chart(document.getElementById('toolChart'),{
-    type:'bar',
-    data:{labels:tt.map(([t])=>t.length>16?t.slice(0,15)+'…':t),datasets:[{data:tt.map(([,c])=>c),backgroundColor:'#1D9E75',borderRadius:6,borderSkipped:false}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},color:'#7a7268'},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{font:{size:10},color:'#7a7268'},grid:{display:false}}}}
-  });
-
-  dc('country');
-  const ct=topN(countBy(data.map(d=>d.country)),6);
-  charts.country=new Chart(document.getElementById('countryChart'),{
-    type:'bar',
-    data:{labels:ct.map(([c])=>c.length>16?c.slice(0,15)+'…':c),datasets:[{data:ct.map(([,n])=>n),backgroundColor:'#BA7517',borderRadius:6,borderSkipped:false}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:10},color:'#7a7268'},grid:{color:'rgba(0,0,0,0.05)'}},y:{ticks:{font:{size:10},color:'#7a7268'},grid:{display:false}}}}
-  });
-
-  dc('trend');
-  const pm={};
-  allData.forEach(d=>{
-    if(!d.charity)return;
-    if(!pm[d.charity]){pm[d.charity]={date:d.date,count:0};}
-    pm[d.charity].count++;
-    if(new Date(d.date)<new Date(pm[d.charity].date))pm[d.charity].date=d.date;
-  });
-  const tp=Object.entries(pm).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date));
-  charts.trend=new Chart(document.getElementById('trendChart'),{
-    type:'bar',
-    data:{labels:tp.map(([n])=>n.length>16?n.slice(0,15)+'…':n),datasets:[{data:tp.map(([,v])=>v.count),backgroundColor:'#D85A30',borderRadius:6,borderSkipped:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' submissions'}}},scales:{x:{ticks:{font:{size:9},color:'#7a7268',maxRotation:35,autoSkip:false},grid:{display:false}},y:{ticks:{font:{size:10},color:'#7a7268'},grid:{color:'rgba(0,0,0,0.05)'}}}}
-  });
-}
-
-function getFiltered(){
-  const s=document.getElementById('search').value.toLowerCase();
-  const ch=document.getElementById('filter-charity').value;
-  const sk=document.getElementById('filter-skill').value;
-  const co=document.getElementById('filter-country').value;
-  const ft=document.getElementById('filter-firsttime').value;
-  return [...allData].sort((a,b)=>new Date(b.date)-new Date(a.date)).filter(d=>{
-    const nm=`${d.firstName} ${d.lastName}`.toLowerCase();
-    if(s&&!nm.includes(s)&&!d.tool.toLowerCase().includes(s)&&!d.city.toLowerCase().includes(s))return false;
-    if(ch&&d.charity!==ch)return false;
-    if(sk&&d.skill!==sk)return false;
-    if(co&&d.country!==co)return false;
-    if(ft==='yes'&&!/yes|y|true/i.test(d.firstTime))return false;
-    if(ft==='no'&&/yes|y|true/i.test(d.firstTime))return false;
-    return true;
-  });
-}
-
-function populateFilters(){
-  const fill=(id,vals)=>{
-    const sel=document.getElementById(id);
-    const f=sel.options[0];sel.innerHTML='';sel.appendChild(f);
-    [...new Set(vals)].filter(Boolean).sort().forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o);});
-  };
-  const charityDates={};
-  allData.forEach(d=>{if(!d.charity)return;const p=new Date(d.date);if(!charityDates[d.charity]||p<charityDates[d.charity])charityDates[d.charity]=p;});
-  const sortedCh=Object.keys(charityDates).sort((a,b)=>charityDates[a]-charityDates[b]);
-  const csel=document.getElementById('filter-charity');const cf=csel.options[0];csel.innerHTML='';csel.appendChild(cf);
-  sortedCh.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;csel.appendChild(o);});
-  fill('filter-skill',allData.map(d=>d.skill));
-  fill('filter-country',allData.map(d=>d.country));
-}
-
-function renderGallery(reset=true){
-  if(reset)currentPage=1;
-  const data=getFiltered();
-  const el=document.getElementById('vol-grid');
-  const pg=document.getElementById('pagination');
-  const total=Math.ceil(data.length/PAGE);
-  const start=(currentPage-1)*PAGE;
-  const slice=data.slice(start,start+PAGE);
-
-  document.getElementById('result-count').textContent=`${data.length} volunteer${data.length!==1?'s':''} found`;
-
-  if(!slice.length){el.innerHTML='<p style="color:var(--muted);font-size:14px;grid-column:1/-1">No volunteers match your filters.</p>';pg.innerHTML='';return;}
-
-  el.innerHTML=slice.map((d,i)=>{
-    const idx=start+i;
-    const name=[d.firstName,d.lastName].filter(Boolean).join(' ')||'Volunteer';
-    const hasImg=d.screenshot&&d.screenshot.startsWith('http');
-    const initials=(d.firstName?d.firstName[0]:'')+(d.lastName?d.lastName[0]:'');
-    return `<div class="vol-card" onclick="openModal(${idx})">
-      ${hasImg?`<img class="vol-img" src="${d.screenshot}" alt="${name}" loading="lazy" onerror="this.outerHTML='<div class=vol-img-ph style=background:var(--teal-l);color:var(--teal-d);font-size:1.4rem;font-weight:600>${initials||'📊'}</div>'">`:`<div class="vol-img-ph" style="background:var(--${['teal','amber','coral'][idx%3]}-l);color:var(--${['teal','amber','coral'][idx%3]}-d);font-size:1.5rem;font-weight:600">${initials||'DC'}</div>`}
-      <div class="vol-body">
-        <div class="vol-name">${name}${/yes/i.test(d.present)?'<span class="vol-tag amber" style="margin-left:6px;font-size:9px">★ Presenter</span>':''}</div>
-        <div class="vol-meta">${d.charity}${d.city?' · '+d.city:''}</div>
-        <div class="vol-tags">
-          ${d.skill?`<span class="vol-tag teal">${d.skill}</span>`:''}
-          ${d.tool?d.tool.split(/[,;\/]/).slice(0,2).map(t=>`<span class="vol-tag">${t.trim()}</span>`).join(''):''}
-        </div>
-        ${d.link?`<a class="vol-link" href="${d.link}" target="_blank" onclick="event.stopPropagation()">View project →</a>`:''}
-      </div>
-    </div>`;
-  }).join('');
-
-  let pgHtml=`<button class="pag-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
-  for(let i=1;i<=total;i++){
-    if(i===1||i===total||(i>=currentPage-1&&i<=currentPage+1)){
-      pgHtml+=`<button class="pag-btn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
-    }else if(i===currentPage-2||i===currentPage+2){pgHtml+=`<span style="color:var(--muted);font-size:12px;padding:0 4px">…</span>`;}
-  }
-  pgHtml+=`<button class="pag-btn" onclick="goPage(${currentPage+1})" ${currentPage===total?'disabled':''}>›</button>`;
-  pg.innerHTML=pgHtml;
-}
-
-function goPage(p){
-  const data=getFiltered();
-  const total=Math.ceil(data.length/PAGE);
-  if(p<1||p>total)return;
-  currentPage=p;
-  renderGallery(false);
-  document.getElementById('vol-grid').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-function renderFeedback(){
-  const loading=document.getElementById('feedback-loading');
-  const content=document.getElementById('feedback-content');
-  loading.style.display='none';content.style.display='block';
-
-  const rated=fbData.filter(d=>d.rating>0);
-  const avg=rated.length?rated.reduce((s,d)=>s+d.rating,0)/rated.length:0;
-  const dist={5:0,4:0,3:0,2:0,1:0};
-  rated.forEach(d=>{const r=Math.round(d.rating);if(dist[r]!==undefined)dist[r]++;});
-  const max=Math.max(...Object.values(dist),1);
-
-  const stars=n=>Array.from({length:5},(_,i)=>`<span style="color:${i<Math.round(n)?'#F59E0B':'#d9d2c5'}">★</span>`).join('');
-
-  document.getElementById('rating-summary').innerHTML=`
-    <div style="text-align:center;flex-shrink:0">
-      <div style="font-family:'DM Serif Display',serif;font-size:3.2rem;color:#fff;line-height:1">${avg.toFixed(1)}</div>
-      <div style="font-size:16px;margin-top:4px">${stars(avg)}</div>
-      <div style="font-size:11px;opacity:0.6;margin-top:6px">${rated.length} ratings</div>
-    </div>
-    <div style="flex:1;min-width:0">
-      ${[5,4,3,2,1].map(r=>`<div class="r-row">
-        <span class="r-label">${r}★</span>
-        <div class="r-bar-bg"><div class="r-bar" style="width:${Math.round(dist[r]/max*100)}%"></div></div>
-        <span class="r-count">${dist[r]}</span>
-      </div>`).join('')}
-    </div>`;
-
-  const quotes=fbData.filter(d=>d.text&&d.text.length>20).slice(0,6);
-  if(!quotes.length){
-    document.getElementById('quotes-grid').innerHTML='<p style="color:var(--muted);font-size:14px;grid-column:1/-1">No feedback quotes available yet.</p>';
-    return;
-  }
-  const initials=name=>{const p=name.trim().split(' ');return p.length>=2?p[0][0]+p[p.length-1][0]:name.slice(0,2).toUpperCase();};
-  document.getElementById('quotes-grid').innerHTML=quotes.map(q=>`
-    <div class="quote-card">
-      <p class="quote-text">${q.text.length>200?q.text.slice(0,200)+'…':q.text}</p>
-      <div class="quote-author">
-        <div class="quote-avatar">${q.name?initials(q.name):'DC'}</div>
-        <div>
-          <div class="quote-name">${q.name||'Volunteer'}</div>
-          <div class="quote-org">${q.org||''}</div>
-          ${q.rating?`<div class="quote-star">${'★'.repeat(Math.round(q.rating))}${'☆'.repeat(5-Math.round(q.rating))}</div>`:''}
-        </div>
-      </div>
-    </div>`).join('');
-}
-
-function openModal(idx){
-  const data=getFiltered();
-  const d=data[idx];if(!d)return;
-  const name=[d.firstName,d.lastName].filter(Boolean).join(' ')||'Volunteer';
-  const hasImg=d.screenshot&&d.screenshot.startsWith('http');
-  document.getElementById('modal-content').innerHTML=`
-    ${hasImg?`<img class="modal-img" src="${d.screenshot}" alt="${name}">`:''}
-    <div class="modal-h">${name}</div>
-    <div class="modal-org">${d.charity}${d.type?' · '+d.type:''}</div>
-    <div class="modal-grid">
-      <div class="mf"><label>Tool</label><span>${d.tool||'—'}</span></div>
-      <div class="mf"><label>Country</label><span>${d.country||'—'}</span></div>
-      <div class="mf"><label>City</label><span>${d.city||'—'}</span></div>
-      <div class="mf"><label>Hours</label><span>${d.hours||'—'}</span></div>
-      <div class="mf"><label>Skill level</label><span>${d.skill||'—'}</span></div>
-      <div class="mf"><label>First time</label><span>${/yes|y|true/i.test(d.firstTime)?'Yes ✓':'No'}</span></div>
-      ${d.topic?`<div class="mf" style="grid-column:1/-1"><label>Topic</label><span>${d.topic}</span></div>`:''}
-    </div>
-    ${d.link?`<a href="${d.link}" target="_blank" style="display:inline-block;margin-top:1.25rem;background:var(--teal);color:#fff;padding:9px 20px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;">View full submission →</a>`:''}
-  `;
-  document.getElementById('modal').classList.add('open');
-}
-
-function closeModal(){document.getElementById('modal').classList.remove('open');}
-function maybeClose(e){if(e.target===document.getElementById('modal'))closeModal();}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
-['search','filter-charity','filter-skill','filter-country','filter-firsttime']
-  .forEach(id=>document.getElementById(id).addEventListener('input',()=>renderGallery(true)));
-
-loadData();
-</script>
-</body>
-</html>
+.cover-eyebrow{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--tan);margin-bottom:2.5rem}
+.cover-headline{font-family:'DM Serif Display',serif;font-size:clamp(3rem,5vw,5rem);color:var(--cream);line-height:1.05;letter-spacing:-0.02em;flex:1;display:flex;align-items:center}
+.cover-headline em{display:block;color:var(--tan);font-style:italic}
+.cover-foot{border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cf-stat{}
+.cf-n{font-family:'DM Serif Display',serif;font-size:2.8rem;color:#fff;line-height:1;display:block}
+.cf-l{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255
