@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data ChangeMakers — Submissions</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
@@ -204,20 +202,6 @@ body {
 .modal-field span { font-size: 13px; color: var(--ink); }
 .modal-close { float: right; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 5px 12px; cursor: pointer; font-family: inherit; font-size: 12px; color: var(--muted); }
 
-/* ── Map ── */
-.map-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); overflow: hidden;
-  margin-bottom: 2rem;
-}
-.map-header { padding: 1.25rem 1.5rem 0; }
-#volunteer-map { height: 420px; width: 100%; }
-.leaflet-popup-content-wrapper {
-  border-radius: 10px !important; font-family: "DM Sans", sans-serif !important;
-  font-size: 12px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
-}
-.leaflet-popup-tip { display: none; }
-
 /* ── Modal nav arrows ── */
 .modal-nav {
   position: fixed;
@@ -281,7 +265,6 @@ body {
   .modal-prev { left: 4px; }
   .modal-next { right: 4px; }
   .modal-nav { width: 36px; height: 36px; font-size: 22px; }
-  #volunteer-map { height: 300px; }
 }
 @media (max-width: 480px) {
   .charts-row { grid-template-columns: 1fr; }
@@ -363,15 +346,6 @@ body {
     <!-- KPIs -->
     <div class="kpi-row" id="kpi-row"></div>
 
-    <!-- Map -->
-    <div class="map-card">
-      <div class="map-header">
-        <div class="card-title">Volunteer locations</div>
-        <div class="card-sub" style="margin-bottom:12px;">where our volunteers are based — <span id="map-count"></span></div>
-      </div>
-      <div id="volunteer-map"></div>
-    </div>
-
     <!-- Charts -->
     <div class="charts-row" style="grid-template-columns:1fr 1fr 1fr 1fr;">
       <div class="chart-card">
@@ -448,10 +422,6 @@ const SHEET_ID = '14jOgDE-a7-I7Rns9zERGTcA2ounblIdli2b5v-sWYSg';
 const TAB_NAME = 'All Submissions';
 // ─────────────────────────────────────────────────────────────────────────
 
-// Column indices (1-based)
-// Submission ID, Project ID, Date, Charity Name, First name, Last name, Email,
-// Project Type, Skill, Country, City, Hours, First time, Tool, Link, Screenshot,
-// Charity Country, Topic, Selected to Present
 const C = { ID:1, PID:2, DATE:3, CHARITY:4, FNAME:5, LNAME:6, EMAIL:7,
   TYPE:8, SKILL:9, COUNTRY:10, CITY:11, HOURS:12, FIRSTTIME:13,
   TOOL:14, LINK:15, SCREENSHOT:16, CHARITY_COUNTRY:17, TOPIC:18, PRESENT:19 };
@@ -523,7 +493,6 @@ function populateFilters() {
     });
   };
 
-  // Charity sorted by earliest project date in allData
   const charityDateMap = {};
   allData.forEach(d => {
     if (!d.charity) return;
@@ -544,7 +513,6 @@ function populateFilters() {
     const o = document.createElement('option'); o.value = c; o.textContent = c; charitySel.appendChild(o);
   });
 
-  // Volunteer filter — sorted alphabetically by full name
   const volSel = document.getElementById('filter-volunteer');
   const volFirst = volSel.options[0];
   volSel.innerHTML = '';
@@ -594,7 +562,6 @@ function render(resetPage = true) {
   if (resetPage) currentPage = 1;
   const data = getFiltered();
   renderKPIs(data);
-  renderMap(data);
   renderCharts(data);
   renderGallery(data);
   renderTable(data);
@@ -628,7 +595,6 @@ function topN(obj, n) {
 function destroyChart(id) { if(charts[id]){ charts[id].destroy(); delete charts[id]; } }
 
 function renderCharts(data) {
-  // Skill
   destroyChart('skill');
   const skillMap = countBy(data.map(d=>d.skill));
   const skillOrder = ['Beginner','Intermediate','Advanced','Expert'];
@@ -640,7 +606,6 @@ function renderCharts(data) {
       scales:{ x:{ticks:{font:{size:10}},grid:{display:false}}, y:{ticks:{font:{size:10},stepSize:1},grid:{color:'rgba(0,0,0,0.04)'}} } }
   });
 
-  // Tools
   destroyChart('tool');
   const allTools = data.flatMap(d=>d.tool.split(/[,;\/]/).map(t=>t.trim())).filter(Boolean);
   const toolTop = topN(countBy(allTools), 6);
@@ -651,7 +616,6 @@ function renderCharts(data) {
       scales:{ x:{ticks:{font:{size:10},stepSize:1},grid:{color:'rgba(0,0,0,0.04)'}}, y:{ticks:{font:{size:10}},grid:{display:false}} } }
   });
 
-  // Countries
   destroyChart('country');
   const countryTop = topN(countBy(data.map(d=>d.country)), 6);
   charts.country = new Chart(document.getElementById('countryChart'), {
@@ -661,9 +625,7 @@ function renderCharts(data) {
       scales:{ x:{ticks:{font:{size:10},stepSize:1},grid:{color:'rgba(0,0,0,0.04)'}}, y:{ticks:{font:{size:10}},grid:{display:false}} } }
   });
 
-  // Trend line — submissions per project, ordered by project date
   destroyChart('trend');
-  // Group by charity + get earliest date per charity
   const projectMap = {};
   allData.forEach(d => {
     if (!d.charity) return;
@@ -675,21 +637,11 @@ function renderCharts(data) {
     .sort((a, b) => new Date(a[1].date) - new Date(b[1].date));
   const trendLabels = trendPoints.map(([name]) => name.length > 16 ? name.slice(0,15)+'…' : name);
   const trendCounts = trendPoints.map(([, v]) => v.count);
-  // Cumulative line
   charts.trend = new Chart(document.getElementById('trendChart'), {
     type: 'bar',
     data: {
       labels: trendLabels,
-      datasets: [
-        {
-          type: 'bar',
-          label: 'Submissions per project',
-          data: trendCounts,
-          backgroundColor: '#1D9E75',
-          borderRadius: 6,
-          borderSkipped: false,
-        }
-      ]
+      datasets: [{ type: 'bar', label: 'Submissions per project', data: trendCounts, backgroundColor: '#1D9E75', borderRadius: 6, borderSkipped: false }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
@@ -727,11 +679,8 @@ function renderGallery(data) {
   const start = (currentPage - 1) * PAGE_SIZE;
   const pageData = data.slice(start, start + PAGE_SIZE);
 
-  // Pagination controls
   let pgHtml = '';
   pgHtml += `<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹ Prev</button>`;
-
-  // Show page numbers with ellipsis for large sets
   const delta = 2;
   for (let i = 1; i <= totalPages; i++) {
     if (i === 1 || i === totalPages || (i >= currentPage - delta && i <= currentPage + delta)) {
@@ -740,7 +689,6 @@ function renderGallery(data) {
       pgHtml += `<span class="page-info">…</span>`;
     }
   }
-
   pgHtml += `<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next ›</button>`;
   pgHtml += `<span class="page-info">${start+1}–${Math.min(start+PAGE_SIZE, data.length)} of ${data.length}</span>`;
   pgEl.innerHTML = pgHtml;
@@ -848,132 +796,6 @@ function setView(v) {
   document.getElementById('btn-table').classList.toggle('active', v === 'table');
 }
 
-// ── Map ────────────────────────────────────────────────────────────────
-// City/country → lat/lng lookup (covers common volunteer locations)
-const GEO = {
-  // Countries fallback
-  'australia': [-25.27, 133.77], 'india': [20.59, 78.96], 'usa': [37.09, -95.71],
-  'united states': [37.09, -95.71], 'uk': [55.37, -3.43], 'united kingdom': [55.37, -3.43],
-  'canada': [56.13, -106.34], 'germany': [51.16, 10.45], 'france': [46.23, 2.21],
-  'netherlands': [52.13, 5.29], 'spain': [40.46, -3.74], 'italy': [41.87, 12.56],
-  'brazil': [-14.23, -51.92], 'argentina': [-38.41, -63.61], 'mexico': [23.63, -102.55],
-  'south africa': [-30.56, 22.93], 'kenya': [-0.02, 37.90], 'nigeria': [9.08, 8.67],
-  'singapore': [1.35, 103.81], 'japan': [36.20, 138.25], 'china': [35.86, 104.19],
-  'new zealand': [-40.90, 174.88], 'ireland': [53.41, -8.24], 'sweden': [60.12, 18.64],
-  'norway': [60.47, 8.46], 'denmark': [56.26, 9.50], 'finland': [61.92, 25.74],
-  'switzerland': [46.81, 8.22], 'austria': [47.51, 14.55], 'belgium': [50.50, 4.46],
-  'portugal': [39.39, -8.22], 'poland': [51.91, 19.14], 'turkey': [38.96, 35.24],
-  'pakistan': [30.37, 69.34], 'bangladesh': [23.68, 90.35], 'sri lanka': [7.87, 80.77],
-  'philippines': [12.87, 121.77], 'indonesia': [-0.78, 113.92], 'malaysia': [4.21, 101.97],
-  'thailand': [15.87, 100.99], 'vietnam': [14.05, 108.27],
-  // Cities
-  'sydney': [-33.86, 151.20], 'melbourne': [-37.81, 144.96], 'brisbane': [-27.47, 153.02],
-  'perth': [-31.95, 115.86], 'adelaide': [-34.92, 138.60], 'auckland': [-36.84, 174.76],
-  'london': [51.50, -0.12], 'manchester': [53.48, -2.24], 'birmingham': [52.48, -1.89],
-  'edinburgh': [55.95, -3.18], 'dublin': [53.33, -6.24],
-  'new york': [40.71, -74.00], 'los angeles': [34.05, -118.24], 'chicago': [41.87, -87.62],
-  'san francisco': [37.77, -122.41], 'boston': [42.36, -71.05], 'seattle': [47.60, -122.33],
-  'toronto': [43.65, -79.38], 'vancouver': [49.24, -123.11], 'montreal': [45.50, -73.56],
-  'bangalore': [12.97, 77.59], 'mumbai': [19.07, 72.87], 'delhi': [28.61, 77.20],
-  'hyderabad': [17.38, 78.48], 'chennai': [13.08, 80.27], 'pune': [18.52, 73.85],
-  'berlin': [52.52, 13.40], 'munich': [48.13, 11.57], 'hamburg': [53.55, 9.99],
-  'paris': [48.85, 2.35], 'amsterdam': [52.37, 4.89], 'barcelona': [41.38, 2.15],
-  'madrid': [40.41, -3.70], 'rome': [41.89, 12.48], 'milan': [45.46, 9.18],
-  'zurich': [47.37, 8.54], 'brussels': [50.85, 4.35], 'stockholm': [59.33, 18.06],
-  'oslo': [59.91, 10.75], 'copenhagen': [55.67, 12.56], 'helsinki': [60.16, 24.93],
-  'singapore': [1.35, 103.81], 'tokyo': [35.68, 139.69], 'seoul': [37.56, 126.97],
-  'beijing': [39.90, 116.40], 'shanghai': [31.22, 121.47], 'hong kong': [22.31, 114.17],
-  'nairobi': [-1.28, 36.81], 'cape town': [-33.92, 18.42], 'johannesburg': [-26.20, 28.04],
-  'karachi': [24.86, 67.01], 'lahore': [31.55, 74.34], 'dhaka': [23.81, 90.41],
-  'colombo': [6.92, 79.84], 'jakarta': [-6.21, 106.84], 'kuala lumpur': [3.14, 101.68],
-  'manila': [14.59, 120.97], 'bangkok': [13.75, 100.52], 'ho chi minh city': [10.82, 106.62],
-  'buenos aires': [-34.60, -58.38], 'sao paulo': [-23.54, -46.62], 'bogota': [4.71, -74.07],
-  'lima': [-12.04, -77.02], 'santiago': [-33.45, -70.66], 'mexico city': [19.42, -99.13],
-};
-
-function geoLookup(city, country) {
-  const c = (city || '').toLowerCase().trim();
-  const co = (country || '').toLowerCase().trim();
-  if (c && GEO[c]) return GEO[c];
-  if (co && GEO[co]) return GEO[co];
-  return null;
-}
-
-let map = null;
-let markerLayer = null;
-
-function initMap() {
-  if (map) return;
-  map = L.map('volunteer-map', { zoomControl: true, scrollWheelZoom: false })
-    .setView([20, 10], 2);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 19
-  }).addTo(map);
-  markerLayer = L.layerGroup().addTo(map);
-  // Force redraw after container is fully visible
-  setTimeout(() => { map.invalidateSize(); }, 200);
-}
-
-function renderMap(data) {
-  initMap();
-  markerLayer.clearLayers();
-
-  // Group by location — deduplicate by volunteer name so dot = unique people
-  const locMap = {};
-  data.forEach(d => {
-    const coords = geoLookup(d.city, d.country);
-    if (!coords) return;
-    const key = coords.join(',');
-    if (!locMap[key]) locMap[key] = { coords, volunteers: new Map(), city: d.city, country: d.country };
-    const name = [d.firstName, d.lastName].filter(Boolean).join(' ') || 'Volunteer';
-    locMap[key].volunteers.set(name, d);
-  });
-
-  const locations = Object.values(locMap).map(loc => ({
-    ...loc,
-    volunteers: [...loc.volunteers.values()],
-    names: [...loc.volunteers.keys()],
-  }));
-  let plotted = 0;
-
-  locations.forEach(loc => {
-    const count = loc.names.length;
-    const size = Math.min(8 + count * 3, 28);
-    plotted += count;
-
-    const icon = L.divIcon({
-      className: '',
-      html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:#1D9E75;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:${count>1?10:0}px;font-weight:700;font-family:DM Sans,sans-serif;">${count>1?count:''}</div>`,
-      iconSize: [size, size],
-      iconAnchor: [size/2, size/2],
-    });
-
-    const nameList = loc.names.slice(0,5).map(n =>
-      `<div style="padding:2px 0;border-bottom:1px solid #f1f5f9;font-size:11px;">${n}</div>`
-    ).join('');
-    const more = loc.names.length > 5 ? `<div style="font-size:10px;color:#888;margin-top:4px;">+${loc.names.length-5} more</div>` : '';
-
-    L.marker(loc.coords, { icon }).bindPopup(`
-      <div style="min-width:150px;">
-        <div style="font-weight:700;font-size:12px;margin-bottom:6px;">${loc.city||loc.country} <span style="color:#1D9E75;font-size:11px;">(${count})</span></div>
-        ${nameList}${more}
-      </div>
-    `).addTo(markerLayer);
-  });
-
-  document.getElementById('map-count').textContent = `${plotted} unique volunteers mapped`;
-  setTimeout(() => {
-    map.invalidateSize();
-    if (locations.length > 0) {
-      const bounds = L.latLngBounds(locations.map(l => l.coords));
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 3 });
-    } else {
-      map.setView([20, 10], 2);
-    }
-  }, 250);
-}
-
 // ── Export PNG ────────────────────────────────────────────────────────
 async function exportPNG() {
   const btn = document.getElementById('export-btn');
@@ -1016,7 +838,6 @@ function goPage(p) {
 ['search','filter-charity','filter-type','filter-skill','filter-country','filter-firsttime','filter-volunteer']
   .forEach(id => document.getElementById(id).addEventListener('input', render));
 
-// Keyboard navigation for modal
 document.addEventListener('keydown', e => {
   const modal = document.getElementById('modal');
   if (!modal.classList.contains('open')) return;
